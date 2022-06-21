@@ -1,0 +1,21 @@
+apiVersion: network.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: app-stack-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: todo
+      tier: database
+  policyTypes:
+  - Engress
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: todo
+          tier: backend
+    ports:
+    - protocol: TCP
+      port: 3306

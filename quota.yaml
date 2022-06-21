@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: limit
+  namespace: project-firebird
+spec:
+  hard:
+    secrets: "1"
+status: {}

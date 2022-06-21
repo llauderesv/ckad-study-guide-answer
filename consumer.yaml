@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: consumer
+  name: consumer
+spec:
+  containers:
+  - image: nginx
+    name: consumer
+    resources: {}
+    volumeMounts:
+    - name: ext-service-secret
+      mountPath: /var/app
+    env:
+    - name: API_ENDPOINT
+      valueFrom:
+        configMapKeyRef:
+          name: ext-service-configmap
+          key: api_endpoint
+    - name: USERNAME
+      valueFrom:
+        configMapKeyRef:
+          name: ext-service-configmap
+          key: username
+  volumes:
+  - name: ext-service-secret
+    secret:
+      secretName: ext-service-secre
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: sidecar
+  name: sidecar
+spec:
+  volumes:
+  - name: logs-vol
+    emptyDir: {}
+  containers:
+  - image: nginx:1.17-alpine
+    name: nginx
+    resources: {}
+    volumeMounts:
+    - name: logs-vol
+      mountPath: /var/log/nginx
+  - image: busybox:1.28
+    name: sidecar
+    command: ["sh","-c","while true; do if [ \"$(cat /var/log/nginx/error.log \
+              | grep 'error')\" != \"\" ]; then echo 'Error discovered!';
+fi; \ sleep 10s; done"]
+    volumeMounts:
+    - name: logs-vol
+      mountPath: /var/log/nginx
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
