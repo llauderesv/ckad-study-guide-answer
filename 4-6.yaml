@@ -16,7 +16,7 @@ spec:
     volumeMounts:
     - name: logs
       mountPath: /var/app/data
-    command: ["/bin/sh", "-c", "counter=0; while true; do cd /var/app/data; touch $counter-data.txt; counter=$((counter+1)); sleep 30s; done;"]
+    command: ["/bin/sh", "-c", "counter=0; while true; do touch /var/app/data/$counter-data.txt; counter=$((counter+1)); sleep 30s; done;"]
   - image: busybox
     name: sidecar
     command: ["/bin/sh", "-c", "cd /var/app/data; while true; do ls | wc -l; sleep 60s; done;"]
