@@ -1,3 +1,7 @@
-Answer to all exercises in Certified Kubernetes Application Developer Study Guide O'reilly Book by Benjamin Muschko.
+# Kubernetes Certification Study Guide
 
-![ebook](./screenshots/ebook.jpg)
+## O'Reilly - Certified Kubernetes Application Developer (CKAD Study Guide)
+
+Answer to all exercises in the Ebook of Certified Kubernetes Application Developer Study Guide O'Reilly Book by Benjamin Muschko.
+
+<img src="./screenshots/ebook.jpg" width="150" height="180" />
